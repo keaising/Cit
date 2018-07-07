@@ -16,11 +16,9 @@ namespace Shuxiao.Wang.Cit
             }
             catch (Exception ex)
             {
-                Console.WriteLine(ex.Message);
-                //Console.WriteLine(Newtonsoft.Json.JsonConvert.SerializeObject(ex));
+                Console.WriteLine("Error! " + ex.Message);
             }
-            Console.WriteLine("Enter any key to exit.");
-            Console.ReadKey();
+            Console.WriteLine("Done!");
         }
 
         static void RunOptionsAndReturnExitCode(Options opts)
@@ -55,6 +53,11 @@ namespace Shuxiao.Wang.Cit
             var repoName = arr[arr.Length - 1];
             repoName = repoName.Substring(0, repoName.Length - 4);
             var userName = arr[arr.Length - 2];
+            if (repoUrl.StartsWith("git"))
+            {
+                var temp = userName.Split(':');
+                userName = temp[temp.Length - 1];
+            }
             return new string[] { userName, repoName };
         }
     }

@@ -13,7 +13,7 @@ public class Config
         }
         var source = JObject.Parse(file);
         if (source.ContainsKey("Path"))
-            source["path"] = path;
+            source["Path"] = path;
         else
             source.Add("Path", path);
         System.IO.File.WriteAllText("cit.config", JsonConvert.SerializeObject(source));

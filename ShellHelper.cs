@@ -31,7 +31,7 @@ public static class ShellHelper
 
     private static string Cmd(string cmd)
     {
-        //System.Console.WriteLine($"cmd:{cmd}");
+        System.Console.WriteLine($"cmd:{cmd}");
         var process = new Process()
         {
             StartInfo = new ProcessStartInfo
