@@ -1,32 +1,40 @@
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
+using System;
+using System.IO;
 
-public class Config
+namespace Shuxiao.Wang.Cit
 {
-    public static void SetPath(string path)
+
+    public class Config
     {
-        string file = System.IO.File.ReadAllText("cit.config");
-        if (string.IsNullOrWhiteSpace(file))
+        public static void SetPath(string path)
         {
-            System.IO.File.WriteAllText("cit.config", JsonConvert.SerializeObject(new { Path = path }));
-            return;
+            var file = Path.Combine(Path.GetDirectoryName(typeof(Program).Assembly.Location), "cit.config");
+            if (!File.Exists(file))
+            {
+                File.WriteAllText(file, JsonConvert.SerializeObject(new { Path = path }));
+                return;
+            }
+            var content = File.ReadAllText(file);
+            var source = JObject.Parse(content);
+            if (source.ContainsKey("Path"))
+                source["Path"] = path;
+            else
+                source.Add("Path", path);
+            File.WriteAllText(file, JsonConvert.SerializeObject(source));
         }
-        var source = JObject.Parse(file);
-        if (source.ContainsKey("Path"))
-            source["Path"] = path;
-        else
-            source.Add("Path", path);
-        System.IO.File.WriteAllText("cit.config", JsonConvert.SerializeObject(source));
-    }
-    public static string GetPath()
-    {
-        string file = System.IO.File.ReadAllText("cit.config");
-        if (string.IsNullOrWhiteSpace(file))
-            return string.Empty;
-        var source = JObject.Parse(file);
-        if (source.ContainsKey("Path"))
-            return source.Value<string>("Path");
-        else
-            return string.Empty;
+        public static string GetPath()
+        {
+            var file = Path.Combine(Path.GetDirectoryName(typeof(Program).Assembly.Location), "cit.config");
+            var content = File.ReadAllText(file);
+            if (string.IsNullOrWhiteSpace(content))
+                return string.Empty;
+            var source = JObject.Parse(content);
+            if (source.ContainsKey("Path"))
+                return source.Value<string>("Path");
+            else
+                return string.Empty;
+        }
     }
 }
