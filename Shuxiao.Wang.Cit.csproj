@@ -4,11 +4,11 @@
     <OutputType>Exe</OutputType>
     <TargetFramework>netcoreapp2.1</TargetFramework>
     <PackAsTool>true</PackAsTool>
-    <Version>1.0.3</Version>
+    <Version>1.0.4</Version>
     <Authors>Shuxiao Wang</Authors>
-    <PackageId>cit</PackageId>
+    <PackageId>PackageId.cit</PackageId>
     <Company>Homeotherms</Company>
-    <Product>cit</Product>
+    <Product>Dotnet Global Tool</Product>
     <AssemblyName>shuxiao.cit</AssemblyName>
   </PropertyGroup>
 
