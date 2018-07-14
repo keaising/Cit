@@ -12,3 +12,7 @@
 2. 执行命令安装本工具：`dotnet tool install -g dnc-git`
 3. 初次运行时请先修改目录到你的 github.com 所在目录，例如： `dnc-git -p 'C:\Users\Username\source\github.com'`
 4. clone github repo 时执行 `dnc-git -c 'git@github.com/user_name/repo_name'` 即可
+
+## 备注
+
+只在 Windows 10 1803 Build 17134 上测试通过，理论上兼容所有能安装 .Net Core SDK 2.1 Build 300 以上的平台，如果有问题，请提 issue 说明情况，非常感谢 
