@@ -7,7 +7,7 @@ namespace Shuxiao.Wang.Cit
 
     public class Options
     {
-        [Option('c', "clone", Required = true, HelpText = "the git url of github repo.")]
+        [Option('c', "clone", Required = false, HelpText = "the git url of github repo.")]
         public String Clone { get; set; }
 
         // Omitting long name, defaults to name of property, ie "--verbose"

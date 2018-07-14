@@ -16,34 +16,48 @@ namespace Shuxiao.Wang.Cit
             }
             catch (Exception ex)
             {
-                Console.WriteLine("Error! " + ex.Message);
+                ConsoleHelper.WriteError("Error! " + ex.Message);
             }
-            Console.WriteLine("Done!");
         }
 
         static void RunOptionsAndReturnExitCode(Options opts)
         {
+            ///path
+            var path = string.Empty;
             if (!string.IsNullOrWhiteSpace(opts.Path))
             {
                 Config.SetPath(opts.Path);
+                path = Config.GetPath();
+                ConsoleHelper.WriteInfo($"github.com path is \"{path}\" now");
             }
-            var path = Config.GetPath();
-            if (string.IsNullOrWhiteSpace(opts.Clone))
+            else
+                path = Config.GetPath();
+            if (string.IsNullOrWhiteSpace(path))
             {
-                Console.WriteLine("Warning: No Clone url, github repo will be clone to current directory.");
+                ConsoleHelper.WriteInfo("No Clone url, github repo will be clone to current directory.", ConsoleColor.Yellow);
             }
-            var names = GetRepoName(opts.Clone);
-            var cmd = $"git clone {opts.Clone} {path}\\{names[0]}\\{names[1]}";
-            var ret = cmd.Execute();
-            if (!string.IsNullOrWhiteSpace(ret))
-                Console.WriteLine($"Git Execute result: {ret}");
+
+            ///clone repo
+            if (!string.IsNullOrWhiteSpace(opts.Clone))
+            {
+                var names = GetRepoName(opts.Clone);
+                path = string.IsNullOrWhiteSpace(path) ?
+                    path :
+                    $"{path}\\{names[0]}\\{names[1]}";
+                var cmd = $"git clone {opts.Clone} {path}";
+                cmd.Execute();
+            }
         }
 
         static void HandleParseError(IEnumerable<Error> errs)
         {
             foreach (var err in errs)
             {
-                Console.WriteLine($"Oops! The error message: {err.Tag.ToString()}");
+                if (!err.Tag.ToString().Equals("UnknownOptionError") &&
+                    !err.Tag.ToString().Equals("HelpRequestedError") &&
+                    !err.Tag.ToString().Equals("VersionRequestedError") &&
+                    !err.Tag.ToString().Equals("MissingValueOptionError"))
+                    ConsoleHelper.WriteError($"{err.Tag.ToString()}");
             }
         }
 

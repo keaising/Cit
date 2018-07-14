@@ -8,9 +8,12 @@ namespace Shuxiao.Wang.Cit
 
     public class Config
     {
+        private static string configName = "dnc-git.json";
         public static void SetPath(string path)
         {
-            var file = Path.Combine(Path.GetDirectoryName(typeof(Program).Assembly.Location), "cit.config");
+            var file = Path.Combine(Path.GetDirectoryName(typeof(Program).Assembly.Location), configName);
+            if (path.ToLower() == "Empty".ToLower())
+                path = "";
             if (!File.Exists(file))
             {
                 File.WriteAllText(file, JsonConvert.SerializeObject(new { Path = path }));
@@ -26,7 +29,7 @@ namespace Shuxiao.Wang.Cit
         }
         public static string GetPath()
         {
-            var file = Path.Combine(Path.GetDirectoryName(typeof(Program).Assembly.Location), "cit.config");
+            var file = Path.Combine(Path.GetDirectoryName(typeof(Program).Assembly.Location), configName);
             var content = File.ReadAllText(file);
             if (string.IsNullOrWhiteSpace(content))
                 return string.Empty;
