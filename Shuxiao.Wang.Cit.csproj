@@ -1,16 +1,23 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <OutputType>Exe</OutputType>
-    <TargetFramework>netcoreapp2.1</TargetFramework>
-    <PackAsTool>true</PackAsTool>
-    <Version>1.0.8</Version>
-    <Authors>Shuxiao Wang</Authors>
-    <PackageId>dnc-git</PackageId>
-    <Company>Homeotherms</Company>
-    <Product>Dotnet Global Tool Set</Product>
     <AssemblyName>dnc-git</AssemblyName>
+    <Authors>Shuxiao Wang</Authors>
+    <Company>Homeotherms</Company>
+    <Company>Homeotherms</Company>
+    <Copyright>MIT License</Copyright>
+    <Description>可以在任意位置将 github repoes 放到合适目录下的 .Net Core Global Tool</Description>
+    <OutputType>Exe</OutputType>
+    <PackAsTool>true</PackAsTool>
+    <PackageId>dnc-git</PackageId>
+    <Product>Dotnet Global Tool Set</Product>
+    <PackageProjectUrl>https://github.com/keaising/Cit</PackageProjectUrl>
+    <PackageLicenseUrl>https://github.com/keaising/Cit/blob/master/LICENSE</PackageLicenseUrl>
+    <Summary>可以在任意位置将 github repoes 放到合适目录下的 .Net Core Global Tool</Summary>
+    <TargetFramework>netcoreapp2.1</TargetFramework>
     <ToolCommandName>dnc-git</ToolCommandName>
+    <Title>dnc-git</Title>
+    <Version>1.0.9</Version>
   </PropertyGroup>
 
   <ItemGroup>
