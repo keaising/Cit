@@ -15,4 +15,4 @@
 
 ## 备注
 
-只在 Windows 10 1803 Build 17134 上测试通过，理论上兼容所有能安装 .Net Core SDK 2.1 Build 300 以上的平台，如果有问题，请提 issue 说明情况，非常感谢 
+在 Windows 10 1803 Build 17134 和 macOS High Sierra 10.13.6 上测试通过，理论上兼容所有能安装 .Net Core SDK 2.1 Build 300 以上的平台，如果有问题，请提 issue 说明情况，非常感谢 
