@@ -1,4 +1,5 @@
 ﻿using System;
+using System.IO;
 using System.Collections.Generic;
 using CommandLine;
 
@@ -42,8 +43,7 @@ namespace Shuxiao.Wang.Cit
             {
                 var names = GetRepoName(opts.Clone);
                 path = string.IsNullOrWhiteSpace(path) ?
-                    path :
-                    $"{path}\\{names[0]}\\{names[1]}";
+                             path : Path.Combine(path, names[0], names[1]);
                 var cmd = $"git clone {opts.Clone} {path}";
                 cmd.Execute();
             }
