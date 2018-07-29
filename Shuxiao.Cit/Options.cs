@@ -2,7 +2,7 @@ using CommandLine;
 using System;
 using System.Collections.Generic;
 
-namespace Shuxiao.Wang.Cit
+namespace Shuxiao.Cit
 {
 
     public class Options
@@ -11,7 +11,7 @@ namespace Shuxiao.Wang.Cit
         public String Clone { get; set; }
 
         // Omitting long name, defaults to name of property, ie "--verbose"
-        [Option('p', "path", Required = false, HelpText = "the local github.com path, e.g.: \\c\\source\\github.com.")]
+        [Option('p', "path", Required = false, HelpText = "the local source path, e.g.: \\c\\source\\")]
         public String Path { get; set; }
     }
 }

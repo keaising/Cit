@@ -3,7 +3,7 @@ using System.IO;
 using System.Collections.Generic;
 using CommandLine;
 
-namespace Shuxiao.Wang.Cit
+namespace Shuxiao.Cit
 {
     class Program
     {
@@ -29,21 +29,21 @@ namespace Shuxiao.Wang.Cit
             {
                 Config.SetPath(opts.Path);
                 path = Config.GetPath();
-                ConsoleHelper.WriteInfo($"github.com path is \"{path}\" now");
+                ConsoleHelper.WriteInfo($"Git pull destination is \"{path}\" now");
             }
             else
                 path = Config.GetPath();
             if (string.IsNullOrWhiteSpace(path))
             {
-                ConsoleHelper.WriteInfo("No Clone url, github repo will be clone to current directory.", ConsoleColor.Yellow);
+                ConsoleHelper.WriteInfo("No Clone url, git repo will be clone to current directory.", ConsoleColor.Yellow);
             }
 
             ///clone repo
             if (!string.IsNullOrWhiteSpace(opts.Clone))
             {
-                var names = GetRepoName(opts.Clone);
+                var url = opts.Clone.ResolveUrl();
                 path = string.IsNullOrWhiteSpace(path) ?
-                             path : Path.Combine(path, names[0], names[1]);
+                             path : Path.Combine(path, url.HostName, url.UserName, url.Repo);
                 var cmd = $"git clone {opts.Clone} {path}";
                 cmd.Execute();
             }
@@ -59,20 +59,6 @@ namespace Shuxiao.Wang.Cit
                     !err.Tag.ToString().Equals("MissingValueOptionError"))
                     ConsoleHelper.WriteError($"{err.Tag.ToString()}");
             }
-        }
-
-        static string[] GetRepoName(string repoUrl)
-        {
-            var arr = repoUrl.Split('/');
-            var repoName = arr[arr.Length - 1];
-            repoName = repoName.Substring(0, repoName.Length - 4);
-            var userName = arr[arr.Length - 2];
-            if (repoUrl.StartsWith("git"))
-            {
-                var temp = userName.Split(':');
-                userName = temp[temp.Length - 1];
-            }
-            return new string[] { userName, repoName };
         }
     }
 }

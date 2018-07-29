@@ -3,12 +3,12 @@ using Newtonsoft.Json.Linq;
 using System;
 using System.IO;
 
-namespace Shuxiao.Wang.Cit
+namespace Shuxiao.Cit
 {
-
     public class Config
     {
-        private static string configName = "dnc-git.json";
+        private static string configName = "cit.json";
+        private static string pathName = "Path";
         public static void SetPath(string path)
         {
             var file = Path.Combine(Path.GetDirectoryName(typeof(Program).Assembly.Location), configName);
@@ -21,10 +21,10 @@ namespace Shuxiao.Wang.Cit
             }
             var content = File.ReadAllText(file);
             var source = JObject.Parse(content);
-            if (source.ContainsKey("Path"))
-                source["Path"] = path;
+            if (source.ContainsKey(pathName))
+                source[pathName] = path;
             else
-                source.Add("Path", path);
+                source.Add(pathName, path);
             File.WriteAllText(file, JsonConvert.SerializeObject(source));
         }
         public static string GetPath()
@@ -34,8 +34,8 @@ namespace Shuxiao.Wang.Cit
             if (string.IsNullOrWhiteSpace(content))
                 return string.Empty;
             var source = JObject.Parse(content);
-            if (source.ContainsKey("Path"))
-                return source.Value<string>("Path");
+            if (source.ContainsKey(pathName))
+                return source.Value<string>(pathName);
             else
                 return string.Empty;
         }

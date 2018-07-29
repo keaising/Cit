@@ -1,6 +1,6 @@
 using System.Text.RegularExpressions;
 
-namespace Shuxiao.Wang.Cit
+namespace Shuxiao.Cit
 {
     public class Url
     {
@@ -11,10 +11,9 @@ namespace Shuxiao.Wang.Cit
 
     public static class UrlExtend
     {
-        public static Url Resolve(this string url)
+        public static Url ResolveUrl(this string url)
         {
-            string pattern = $@"[a-zA-Z]+@(?<HostName>[a-zA-Z.]+):(?<UserName>[a-zA-Z\_][a-zA-Z\_0-9]+)/(?<Repo>[a-zA-Z]+).git";
-
+            string pattern = "[a-zA-Z]+(@|://)(?<HostName>[a-zA-Z_][a-zA-Z0-9._]+)(:|/)(?<UserName>[a-zA-Z_][a-zA-Z_0-9]+)/(?<Repo>[a-zA-Z_][a-zA-Z0-9_]+).git";
             var matches = Regex.Matches(url, pattern);
             foreach (Match match in matches)
             {

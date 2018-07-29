@@ -2,7 +2,7 @@ using System;
 using System.Diagnostics;
 using System.Runtime.InteropServices;
 
-namespace Shuxiao.Wang.Cit
+namespace Shuxiao.Cit
 {
     public static class ShellHelper
     {
