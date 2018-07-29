@@ -10,7 +10,7 @@
 
 1. 安装 [.Net Core SDK 2.1 Build300](https://www.microsoft.com/net/learn/get-started/windows) 以上版本
 2. 执行命令安装本工具：`dotnet tool install -g cit`
-3. 初次运行时请先修改目录到你的 github.com 所在目录，例如： `cit -p 'C:\Users\Username\source'`
+3. 初次运行时请先修改目录到你的 source 所在目录，例如： `cit -p 'C:\Users\Username\source'`
 4. clone github repo 时执行 `cit -c 'git@host_name/user_name/repo_name'` 即可
 
 ## 备注
