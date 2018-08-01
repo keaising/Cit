@@ -24,7 +24,7 @@ namespace Shuxiao.Cit
         public static void WriteWithoutNote(string info, ConsoleColor frontColor = ConsoleColor.Yellow)
         {
             Console.ForegroundColor = ConsoleColor.DarkGray;
-            Console.Write("  >>> ");
+            Console.Write(">>> ");
             Console.ForegroundColor = frontColor;
             Console.WriteLine($"{info}");
             Console.ResetColor();
